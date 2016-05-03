@@ -39,7 +39,7 @@ public class OpenWeatherServiceImpl implements WeatherService{
 		
 		System.out.println(responseEntity.getStatusCode());
 		
-		if(forecast!=null){
+		if(forecast.getName()!=null){
 			
 			Date today;
 			String result;
@@ -53,15 +53,25 @@ public class OpenWeatherServiceImpl implements WeatherService{
 			DecimalFormat df = new DecimalFormat("#.##");
 			
 			Weather weather = new Weather();
+			System.out.println(forecast.getName());
+
 			weather.setCity(forecast.getName());
 			weather.setTime(result);
+			System.out.println(forecast.getMain().getTemp());
 			weather.setTemperature(String.valueOf(forecast.getMain().getTemp())+celsius);
 			weather.setWeatherDesc(forecast.getWeather().get(0).getDescription());
-			weather.setWind(String.valueOf(ConversionUtil.windMPStoKPH(forecast.getWind().getSpeed()))+kph);
+			weather.setWind(String.valueOf(df.format(ConversionUtil.windMPStoKPH(forecast.getWind().getSpeed())))+kph);
 			weather.setStatusCode(forecast.getCod());
 			return weather;
 		}else{
-			return null;
+			Weather weather = new Weather();
+			weather.setCity("INVALID CITY");
+			weather.setTime("---");
+			weather.setTemperature("---");
+			weather.setWeatherDesc("---");
+			weather.setWind("---");
+			weather.setStatusCode(000);
+			return weather;
 		}
 	}
 
