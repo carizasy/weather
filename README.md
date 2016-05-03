@@ -1,6 +1,6 @@
 # Get Current Weather
 
-Weather Web App is a web application that tells you the current weather of the city your selected in the provided dropdown box in the Web User Interface.
+This is a web application that tells you the current weather of the city you selected in the provided dropdown box in the Web User Interface.
 
 # Requirements and Setup
 
